@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: homekit.builders — Documentation
+    url: https://homekit.builders
+    about: Full documentation, guides, and API reference
+  - name: Discord Community
+    url: https://discord.gg/homekit-builders
+    about: Chat with the community and get help
+  - name: Security Vulnerability
+    url: https://github.com/dhomyzolensky/homekit/security/advisories/new
+    about: Report a security vulnerability privately

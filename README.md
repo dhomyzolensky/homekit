@@ -1,29 +1,40 @@
+<div align="center">
+
+<img src="https://homekit.builders/icon.png" alt="Homekit" width="120" height="120" />
+
 # Homekit
 
-> Control your Apple Home with any AI agent — from the command line.
+**Control your Apple Home with any AI agent.**
 
-Homekit lets you use any agent (Claude, ChatGPT, Cursor, and more) to control your Apple Home. It ships with a **CLI**, an **MCP server**, and an **@openclaw plugin**. You can create scenes, trigger automations, manage accessories, and import/export your entire Home setup — all from your terminal or agent.
+CLI · MCP Server · @openclaw Plugin · macOS App
 
-[![App Store](https://img.shields.io/badge/App_Store-Available-black?logo=apple)](https://apps.apple.com)
-[![npm](https://img.shields.io/npm/v/homekit-cli?label=CLI)](https://www.npmjs.com/package/homekit-cli)
+[![CI](https://github.com/dhomyzolensky/homekit/actions/workflows/ci.yml/badge.svg)](https://github.com/dhomyzolensky/homekit/actions/workflows/ci.yml)
+[![npm homekit-cli](https://img.shields.io/npm/v/homekit-cli?label=homekit-cli&color=cb3837&logo=npm)](https://www.npmjs.com/package/homekit-cli)
+[![npm homekit-mcp](https://img.shields.io/npm/v/homekit-mcp?label=homekit-mcp&color=cb3837&logo=npm)](https://www.npmjs.com/package/homekit-mcp)
+[![App Store](https://img.shields.io/badge/App_Store-macOS-black?logo=apple&logoColor=white)](https://apps.apple.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![homekit.builders](https://img.shields.io/badge/website-homekit.builders-brightgreen)](https://homekit.builders)
+[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-6c47ff?logo=anthropic&logoColor=white)](https://modelcontextprotocol.io)
+
+[Website](https://homekit.builders) · [Documentation](https://homekit.builders/docs) · [Report Bug](https://github.com/dhomyzolensky/homekit/issues/new?template=bug_report.yml) · [Request Feature](https://github.com/dhomyzolensky/homekit/issues/new?template=feature_request.yml)
+
+</div>
 
 ---
 
-## Features
+## What is Homekit?
 
-- **CLI** — Control Apple Home from your terminal with simple commands
-- **MCP Server** — Plug Homekit into any MCP-compatible AI agent (Claude Desktop, Cursor, etc.)
-- **@openclaw Plugin** — First-class integration with the @openclaw agent framework
-- **Scene Management** — Create, import, and export scenes programmatically
-- **Automation Control** — Trigger and manage automations from code or an agent
-- **Accessory Control** — Turn on/off lights, lock doors, adjust thermostats and more
-- **App Store macOS App** — Beautiful native macOS companion app
+Homekit is the missing bridge between Apple Home and AI agents. It exposes your entire smart home — lights, locks, thermostats, scenes, automations — as tools that any AI agent can use.
+
+- **Talk to your home** from Claude, ChatGPT, Cursor, or any MCP-compatible agent
+- **Automate from scripts** with the full-featured CLI
+- **Build on top of it** with the @openclaw plugin and open TypeScript packages
+- **Manage visually** with the native macOS App Store app
+
+This is the first macOS app that bridges Apple's HomeKit framework to the Model Context Protocol — making Apple Home fully programmable by AI.
 
 ---
 
-## Quick Start
+## Quick start
 
 ### Install the CLI
 
@@ -31,45 +42,39 @@ Homekit lets you use any agent (Claude, ChatGPT, Cursor, and more) to control yo
 npm install -g homekit-cli
 ```
 
-### Authenticate
+### Authorize
 
 ```bash
 homekit auth
 ```
 
-This opens the macOS app to authorize Homekit access to your Apple Home.
+This opens the macOS companion app to grant access to your Apple Home. Takes about 10 seconds.
 
-### Control your Home
+### Control your home
 
 ```bash
-# List all accessories
-homekit list
-
-# Turn on the living room lights
-homekit set "Living Room Lights" on
-
-# Activate a scene
-homekit scene "Good Morning"
-
-# Create a new scene
-homekit scene create "Movie Night" --accessories "TV Backlight:on" "Living Room Dimmer:30%"
-
-# Import scenes from a JSON file
-homekit scene import ./scenes.json
-
-# Export all scenes
-homekit scene export > scenes.json
+homekit list                                    # List all accessories
+homekit set "Living Room Lights" on             # Turn on lights
+homekit set "Living Room Dimmer" 40             # Set brightness to 40%
+homekit scene "Good Morning"                    # Activate a scene
+homekit scene create "Movie Night" \
+  --accessories "TV Backlight:on" \
+             "Main Lights:off" \
+             "Lamp:20"                          # Create a scene
+homekit scene export > my-scenes.json           # Export all scenes
+homekit scene import ./scenes.json              # Import scenes
+homekit automation run "Goodnight"              # Trigger an automation
 ```
 
 ---
 
-## MCP Server
+## MCP Server — AI agent integration
 
-Add Homekit to any MCP-compatible AI agent (Claude Desktop, Cursor, Windsurf, etc.).
+Connect any MCP-compatible agent to your Apple Home in under 2 minutes.
 
-### Setup
+### Add to Claude Desktop
 
-Add this to your `mcp.json` or Claude Desktop config:
+Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ```json
 {
@@ -82,20 +87,41 @@ Add this to your `mcp.json` or Claude Desktop config:
 }
 ```
 
-Your agent can now:
-- List and control all accessories in your Home
-- Activate and create scenes
-- Trigger automations
-- Query the state of any accessory
+### Add to Cursor / Windsurf
 
-### Example agent prompts
+Edit `.cursor/mcp.json` (or your agent's MCP config):
 
+```json
+{
+  "mcpServers": {
+    "homekit": {
+      "command": "npx",
+      "args": ["homekit-mcp"]
+    }
+  }
+}
 ```
-"Turn off all the lights in the bedroom"
-"Create a scene called Dinner Party with warm lighting at 40%"
-"What's the temperature on the thermostat?"
-"Lock the front door and arm the security system"
-```
+
+Restart your agent and start talking to your home:
+
+> *"Turn off all the lights in the bedroom"*
+> *"Set the thermostat to 72°F"*
+> *"Create a scene called Dinner Party with warm lights at 30%"*
+> *"What's the status of the front door lock?"*
+> *"Run the Goodnight automation"*
+
+### Available MCP tools
+
+| Tool | Description |
+|------|-------------|
+| `homekit_list_accessories` | List accessories, optionally filtered by room |
+| `homekit_get_accessory` | Get the live state of any accessory |
+| `homekit_set_accessory` | Control any accessory (on/off, brightness, temperature) |
+| `homekit_activate_scene` | Activate a scene |
+| `homekit_list_scenes` | List all scenes |
+| `homekit_create_scene` | Create a new scene programmatically |
+| `homekit_list_automations` | List all automations |
+| `homekit_run_automation` | Trigger an automation |
 
 ---
 
@@ -105,14 +131,14 @@ Your agent can now:
 openclaw plugin add homekit
 ```
 
-Then in your openclaw config:
+Configure in `openclaw.yaml`:
 
 ```yaml
 plugins:
   - homekit
 ```
 
-The plugin exposes all Homekit capabilities as tools inside @openclaw agents.
+All Homekit capabilities are now available as tools inside any @openclaw agent.
 
 ---
 
@@ -122,37 +148,38 @@ The plugin exposes all Homekit capabilities as tools inside @openclaw agents.
 homekit <command> [options]
 
 Commands:
-  auth                    Authorize with Apple Home
-  list                    List all accessories
-  get <name>              Get accessory state
-  set <name> <value>      Set accessory state (on/off/number)
-  scene [name]            Activate a scene
-  scene create <name>     Create a new scene
-  scene import <file>     Import scenes from JSON
-  scene export            Export all scenes to JSON
-  automation list         List all automations
-  automation run <name>   Trigger an automation
-  home list               List all Homes
-  home switch <name>      Switch active Home
+  auth                      Authorize with Apple Home
+  list                      List all accessories
+  get <name>                Get accessory state
+  set <name> <value>        Set accessory state (on/off/0-100)
+  scene [name]              Activate a scene
+  scene create <name>       Create a new scene
+  scene import <file>       Import scenes from a JSON file
+  scene export              Export all scenes as JSON
+  automation list           List all automations
+  automation run <name>     Trigger an automation
+  home list                 List all Homes
+  home switch <name>        Switch active Home
 
-Options:
-  --home <name>           Target a specific Home
-  --json                  Output as JSON
-  --verbose               Verbose output
-  --help                  Show help
+Global options:
+  --home <name>             Target a specific Home
+  --json                    Output as JSON (pipe-friendly)
+  --verbose                 Verbose logging
+  --version                 Show version
+  --help                    Show help
 ```
 
 ---
 
-## macOS App
+## Packages
 
-Homekit is also available as a native macOS app on the **App Store**.
+This is a monorepo. All packages are published to npm independently.
 
-The app provides:
-- Visual scene builder and editor
-- Accessory dashboard with live status
-- CLI & MCP authorization manager
-- Import/export tools with drag-and-drop
+| Package | Version | Description |
+|---------|---------|-------------|
+| [`homekit-cli`](packages/cli) | [![npm](https://img.shields.io/npm/v/homekit-cli?color=cb3837)](https://www.npmjs.com/package/homekit-cli) | Terminal interface |
+| [`homekit-mcp`](packages/mcp) | [![npm](https://img.shields.io/npm/v/homekit-mcp?color=cb3837)](https://www.npmjs.com/package/homekit-mcp) | MCP server for AI agents |
+| [`@openclaw/homekit`](packages/openclaw) | [![npm](https://img.shields.io/npm/v/@openclaw/homekit?color=cb3837)](https://www.npmjs.com/package/@openclaw/homekit) | @openclaw plugin |
 
 ---
 
@@ -161,33 +188,32 @@ The app provides:
 ```
 homekit/
 ├── packages/
-│   ├── cli/          # homekit-cli — Terminal interface
-│   ├── mcp/          # homekit-mcp — MCP server for AI agents
-│   └── openclaw/     # @openclaw/homekit — openclaw plugin
+│   ├── cli/           homekit-cli — Terminal interface
+│   ├── mcp/           homekit-mcp — MCP server (stdio transport)
+│   └── openclaw/      @openclaw/homekit — Plugin
 ├── apps/
-│   └── macos/        # Native macOS App Store app (Swift/SwiftUI)
-└── docs/             # Documentation
+│   └── macos/         Native macOS App (Swift + SwiftUI) — App Store
+└── docs/              Guides and API reference
 ```
+
+The CLI and MCP server communicate with Apple Home through the macOS companion app using a local IPC bridge. This bridge has privileged access to HomeKit — the CLI and MCP packages themselves are pure Node.js and don't require special entitlements.
 
 ---
 
 ## Requirements
 
 - macOS 13 (Ventura) or later
-- Apple Home configured
+- Apple Home set up on your Mac
 - Node.js 18+ (for CLI and MCP server)
+- Homekit macOS app (for initial authorization)
 
 ---
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first.
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-1. Fork the repo
-2. Create your branch (`git checkout -b feature/my-feature`)
-3. Commit your changes (`git commit -m 'Add my feature'`)
-4. Push to the branch (`git push origin feature/my-feature`)
-5. Open a Pull Request
+For security issues, see [SECURITY.md](SECURITY.md).
 
 ---
 
@@ -197,9 +223,8 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ---
 
-## Links
+<div align="center">
 
-- Website: [homekit.builders](https://homekit.builders)
-- macOS App: App Store
-- MCP Protocol: [modelcontextprotocol.io](https://modelcontextprotocol.io)
-- @openclaw: [openclaw.dev](https://openclaw.dev)
+Made by [Dhomy Zolensky](https://github.com/dhomyzolensky) · [homekit.builders](https://homekit.builders)
+
+</div>

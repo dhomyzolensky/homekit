@@ -1,0 +1,85 @@
+name: Bug Report
+description: Report a bug in Homekit CLI, MCP server, or @openclaw plugin
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees: ["dhomyzolensky"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below as completely as possible.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checklist
+      options:
+        - label: I searched existing issues and this is not a duplicate
+          required: true
+        - label: I have updated to the latest version of Homekit
+          required: true
+        - label: I have read the [documentation](https://homekit.builders)
+          required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected component
+      options:
+        - homekit-cli (CLI)
+        - homekit-mcp (MCP Server)
+        - "@openclaw/homekit (Plugin)"
+        - macOS App
+        - Documentation
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: macOS version
+      placeholder: "macOS 14.5 Sonoma"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run `homekit ...`
+        2. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Run with `--verbose` and paste the output here.
+      render: shell

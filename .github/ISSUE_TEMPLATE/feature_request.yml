@@ -1,0 +1,55 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+assignees: ["dhomyzolensky"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make Homekit even better? We'd love to hear it!
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checklist
+      options:
+        - label: I searched existing issues and this feature has not been requested
+          required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Which component would this affect?
+      options:
+        - homekit-cli (CLI)
+        - homekit-mcp (MCP Server)
+        - "@openclaw/homekit (Plugin)"
+        - macOS App
+        - All / New component
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem this solves
+      description: What pain point does this feature address?
+      placeholder: "Right now, I can't do X from the command line..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe how you'd like this to work.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you've thought about?
