@@ -35,6 +35,14 @@ This is the first macOS app that bridges Apple's HomeKit framework to the Model 
 
 ---
 
+## Demo
+
+<div align="center">
+  <img src="docs/demo.svg" alt="Homekit CLI demo" width="100%" />
+</div>
+
+---
+
 ## Quick start
 
 ### Install the CLI
