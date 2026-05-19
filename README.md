@@ -14,8 +14,9 @@ CLI · MCP Server · @openclaw Plugin · macOS App
 [![App Store](https://img.shields.io/badge/App_Store-macOS-black?logo=apple&logoColor=white)](https://apps.apple.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-6c47ff?logo=anthropic&logoColor=white)](https://modelcontextprotocol.io)
+[![GitHub stars](https://img.shields.io/github/stars/dhomyzolensky/homekit?style=social)](https://github.com/dhomyzolensky/homekit/stargazers)
 
-[Website](https://homekit.builders) · [Documentation](https://homekit.builders/docs) · [Report Bug](https://github.com/dhomyzolensky/homekit/issues/new?template=bug_report.yml) · [Request Feature](https://github.com/dhomyzolensky/homekit/issues/new?template=feature_request.yml)
+[Website](https://homekit.builders) · [Documentation](https://homekit.builders/docs) · [Report Bug](https://github.com/dhomyzolensky/homekit/issues/new?template=bug_report.yml) · [Request Feature](https://github.com/dhomyzolensky/homekit/issues/new?template=feature_request.yml) · [Changelog](CHANGELOG.md)
 
 </div>
 
@@ -200,20 +201,48 @@ The CLI and MCP server communicate with Apple Home through the macOS companion a
 
 ---
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=dhomyzolensky/homekit&type=Date)](https://star-history.com/#dhomyzolensky/homekit&Date)
+
+---
+
+## Contributing
+
+Contributions are welcome — we have [good first issues](https://github.com/dhomyzolensky/homekit/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) ready to pick up. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
+For security issues, see [SECURITY.md](SECURITY.md).
+
+---
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%">
+        <a href="https://github.com/dhomyzolensky">
+          <img src="https://github.com/dhomyzolensky.png" width="100px;" alt="Dhomy Zolensky"/><br />
+          <sub><b>Dhomy Zolensky</b></sub>
+        </a><br />
+        <a title="Code">💻</a>
+        <a title="Design">🎨</a>
+        <a title="Ideas">🤔</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+---
+
 ## Requirements
 
 - macOS 13 (Ventura) or later
 - Apple Home set up on your Mac
 - Node.js 18+ (for CLI and MCP server)
 - Homekit macOS app (for initial authorization)
-
----
-
-## Contributing
-
-Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
-
-For security issues, see [SECURITY.md](SECURITY.md).
 
 ---
 
@@ -225,6 +254,8 @@ MIT — see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-Made by [Dhomy Zolensky](https://github.com/dhomyzolensky) · [homekit.builders](https://homekit.builders)
+Made with ❤️ by [Dhomy Zolensky](https://github.com/dhomyzolensky) · [homekit.builders](https://homekit.builders)
+
+⭐ Star this repo if Homekit is useful to you — it helps others find it!
 
 </div>
