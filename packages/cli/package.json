@@ -1,0 +1,16 @@
+{
+  "name": "homekit-cli",
+  "version": "1.0.0",
+  "description": "Control your Apple Home from the command line",
+  "bin": {
+    "homekit": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["homekit", "apple-home", "cli", "smart-home", "macos"],
+  "license": "MIT"
+}

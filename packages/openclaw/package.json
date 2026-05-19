@@ -1,0 +1,12 @@
+{
+  "name": "@openclaw/homekit",
+  "version": "1.0.0",
+  "description": "@openclaw plugin for controlling Apple Home",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": ["openclaw", "homekit", "apple-home", "plugin", "ai-agent"],
+  "license": "MIT"
+}

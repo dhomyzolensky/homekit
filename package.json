@@ -1,0 +1,25 @@
+{
+  "name": "homekit",
+  "version": "1.0.0",
+  "description": "Control your Apple Home with any AI agent — CLI, MCP server, and @openclaw plugin",
+  "homepage": "https://homekit.builders",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhomyzolensky/homekit.git"
+  },
+  "author": "Dhomy Zolensky",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

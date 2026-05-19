@@ -1,0 +1,16 @@
+{
+  "name": "homekit-mcp",
+  "version": "1.0.0",
+  "description": "MCP server — control Apple Home with any AI agent",
+  "bin": {
+    "homekit-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["mcp", "homekit", "apple-home", "ai-agent", "model-context-protocol"],
+  "license": "MIT"
+}
