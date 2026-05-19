@@ -15,6 +15,7 @@ CLI · MCP Server · @openclaw Plugin · macOS App
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-6c47ff?logo=anthropic&logoColor=white)](https://modelcontextprotocol.io)
 [![GitHub stars](https://img.shields.io/github/stars/dhomyzolensky/homekit?style=social)](https://github.com/dhomyzolensky/homekit/stargazers)
+[![GitHub followers](https://img.shields.io/github/followers/dhomyzolensky?style=social&label=Follow)](https://github.com/dhomyzolensky)
 
 [Website](https://homekit.builders) · [Documentation](https://homekit.builders/docs) · [Report Bug](https://github.com/dhomyzolensky/homekit/issues/new?template=bug_report.yml) · [Request Feature](https://github.com/dhomyzolensky/homekit/issues/new?template=feature_request.yml) · [Changelog](CHANGELOG.md)
 
